@@ -31,7 +31,7 @@ an issue, and sends it to a practice mail server.
 
 ## 2. How I learn
 
-- I am new to Python. I have completed up to **13.7** of
+- I am new to Python. I have completed up to **13.8** of
   [Programming Fundamentals](https://agentfactory.panaversity.org/building-ai-workers/programming-fundamentals/),
   and I update this number (and the table below) as I learn.
 - **Write only with what I have learned.** If something new would really
@@ -42,7 +42,7 @@ an issue, and sends it to a practice mail server.
 
 ### How far I have read
 
-**Covered so far: up to and including Lesson 13.7.**
+**Covered so far: up to and including Lesson 13.8.**
 
 Update this table as new lessons are finished.
 
@@ -55,9 +55,10 @@ Update this table as new lessons are finished.
 | 13.5 | Two conditions, empty values, `while` | `and` / `or` / `not`; `or` as a default for empty values (`""`, `None`, `0`); `while` loops with a counter update (`page += 1`) |
 | 13.6 | Functions | `def` with **typed parameters and return types**; the signature is the contract; pure functions; `assert` and `AssertionError` |
 | 13.7 | Lists and dictionaries | lists (0-based index, `len()`), `IndexError`; dicts as records, `d["key"]`, `KeyError`, `.get(key, default)`; `sorted()` / `.sort()` with `key=`, `reverse=True`, `lambda` |
+| 13.8 | Text from a file | `from pathlib import Path`; `Path("data/x.csv").read_text(encoding="utf-8")` reads a whole file into one `str`; `.split(",")` and `.split("\n")` cut text into a list of `str`; line endings `\n` (Mac/Linux) and `\r\n` (Windows); `.strip()` removes blank space (and a stray `\r`) from both ends; every piece is still text until converted |
 
-**Not covered yet (do not use without teaching first):** reading files
-(13.8), dates (13.9), reading tracebacks in depth (13.10), the test-first
+**Not covered yet (do not use without teaching first):** `open()`,
+`.splitlines()`, the `csv` module, dates (13.9), reading tracebacks in depth (13.10), the test-first
 TDG loop (13.11), and anything later: classes, dataclasses, modules beyond
 the basics, exceptions with `try`/`except`, `with`, generators, decorators,
 async, third-party libraries, and so on.
