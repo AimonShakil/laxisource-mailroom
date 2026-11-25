@@ -16,18 +16,29 @@ The goal is for Aimon to **understand** the code, not just to end up with
 working code. The agent is a teacher and pair-programmer first and a code
 generator second.
 
+### What Mailroom does
+
+Mailroom is a command-line tool for one newsletter, **Laxisource-mailroom**,
+which sends emails to potential clients. It reads the subscribers, checks
+an issue, and sends it to a practice mail server.
+
+### Project rules
+
+- Use **uv** for everything.
+- **Never use a real person's email address.** Use `@example.com` for test
+  data, and `@resend.dev` for practice sends.
+- **Commit and push after every step.**
+
 ## 2. How I learn
 
-Three rules, always on:
-
-1. **How far I have read** is recorded in the table below. It is the only
-   source of truth for what I know.
-2. **Use only that.** The agent writes code using only concepts from the
-   table. Nothing from later lessons, nothing "better" from outside the
-   course.
-3. **Ask me to predict anything new.** Before running any new code, or
-   any code that shows a concept I have not seen in this project yet, the
-   agent asks me what I think it will do, and waits for my answer.
+- I am new to Python. I have completed up to **13.7** of
+  [Programming Fundamentals](https://agentfactory.panaversity.org/building-ai-workers/programming-fundamentals/),
+  and I update this number (and the table below) as I learn.
+- **Write only with what I have learned.** If something new would really
+  help, stop and tell me its name in one line. I decide.
+- **When the code uses something new, show me that piece first and ask me
+  to predict what it does.** Stay quiet while I guess. Then run it, and
+  explain a line only when I ask.
 
 ### How far I have read
 
@@ -56,11 +67,12 @@ async, third-party libraries, and so on.
 If a task needs a concept **not** in the table above:
 
 1. **Stop.** Do not write the project code yet.
-2. Tell Aimon which new concept is needed and why.
-3. **Teach it first** with a short PRIMM-AI+ cycle (section 4) on a tiny
-   standalone example, not the project code.
-4. Only after Aimon has predicted, run and investigated it, use it in the
-   project, and add it to the table in section 2.
+2. Tell Aimon the new concept's name in one line. Aimon decides whether to
+   use it.
+3. If yes, **teach it first** with a short PRIMM-AI+ cycle (section 4) on
+   a tiny standalone example, not the project code.
+4. Only after Aimon has predicted and run it, use it in the project, and
+   add it to the table in section 2.
 
 Prefer a simpler solution that uses only known concepts over a "better"
 one that needs new ones.
@@ -91,8 +103,7 @@ faith**. Every claim is checked by running code, tests or the type checker.
 ├── pyproject.toml                    # project + tool config
 ├── uv.lock                           # locked dependency versions (commit it)
 ├── .python-version                   # 3.14
-├── src/laxisource_mailroom/
-│   └── __init__.py                   # main() entry point
+├── main.py                           # the program: main() lives here
 └── tests/
     └── test_main.py
 ```
@@ -100,7 +111,7 @@ faith**. Every claim is checked by running code, tests or the type checker.
 ## 6. Commands (the workbench)
 
 ```bash
-uv run laxisource-mailroom   # run the program
+uv run main.py                    # run the program
 uv run pytest                     # tests
 uv run pyright                    # type checker, strict mode
 uv run ruff check                 # linter
@@ -123,10 +134,10 @@ Before saying any change is done, all three checks must pass:
 
 ## 8. Git workflow
 
-- Remote: public GitHub repo `AimonShakil/laxisource-mailroom`, branch `main`.
+- Remote: public GitHub repo `AimonShakil/mailroom`, branch `main`.
 - Small commits with clear messages. Check `git status` and `git diff`
   before committing.
-- Commit or push only when Aimon asks.
+- Commit and push after every step (once the three checks pass).
 - Tag the end of each chapter (for example `ch13`).
 - The repo is **public**: never commit secrets, `.env` files or real
   personal data.
