@@ -134,7 +134,8 @@ Before saying any change is done, all three checks must pass:
 
 ## 8. Git workflow
 
-- Remote: public GitHub repo `AimonShakil/mailroom`, branch `main`.
+- Remote: public GitHub repo `AimonShakil/laxisource-mailroom`, branch
+  `main`. Do not create new repos or branches.
 - Small commits with clear messages. Check `git status` and `git diff`
   before committing.
 - Commit and push after every step (once the three checks pass).
