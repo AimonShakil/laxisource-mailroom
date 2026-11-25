@@ -1,0 +1,35 @@
+[project]
+name = "laxisource-mailroom-live"
+version = "0.1.0"
+description = "Laxisource mailroom: a learning project for programming fundamentals (PRIMM-AI+)."
+readme = "README.md"
+authors = [
+    { name = "Aimon Shakeel", email = "aimon.ipas@gmail.com" }
+]
+requires-python = ">=3.14"
+dependencies = []
+
+[project.scripts]
+laxisource-mailroom-live = "laxisource_mailroom_live:main"
+
+[build-system]
+requires = ["uv_build>=0.12.2,<0.13.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pyright>=1.1.414",
+    "pytest>=9.2.0",
+    "ruff>=0.17.6",
+]
+
+[tool.pyright]
+typeCheckingMode = "strict"
+pythonVersion = "3.14"
+include = ["src", "tests"]
+
+[tool.ruff]
+target-version = "py314"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
