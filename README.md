@@ -4,7 +4,7 @@ A learning project for [Programming Fundamentals (Agent Factory, Chapter 13)](ht
 built with the PRIMM-AI+ method: predict, run, investigate, modify, make.
 
 ```bash
-uv run laxisource-mailroom
+uv run main.py
 uv run pytest
 uv run pyright
 uv run ruff check
