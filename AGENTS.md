@@ -1,4 +1,4 @@
-# AGENTS.md: Laxisource Mailroom (live)
+# AGENTS.md: Laxisource Mailroom
 
 Read this whole file before changing anything. It is the rulebook for any
 coding agent (Claude Code, OpenCode, and others) working in this repo.
@@ -8,7 +8,7 @@ My language is: **Python**
 
 ## 1. What this project is
 
-`laxisource-mailroom-live` is a **learning project**. The owner, Aimon, is
+`laxisource-mailroom` is a **learning project**. The owner, Aimon, is
 learning programming fundamentals by building it, following the course
 [Programming Fundamentals (Agent Factory, Chapter 13)](https://agentfactory.panaversity.org/building-ai-workers/programming-fundamentals/overview/).
 
@@ -91,7 +91,7 @@ faith**. Every claim is checked by running code, tests or the type checker.
 ├── pyproject.toml                    # project + tool config
 ├── uv.lock                           # locked dependency versions (commit it)
 ├── .python-version                   # 3.14
-├── src/laxisource_mailroom_live/
+├── src/laxisource_mailroom/
 │   └── __init__.py                   # main() entry point
 └── tests/
     └── test_main.py
@@ -100,7 +100,7 @@ faith**. Every claim is checked by running code, tests or the type checker.
 ## 6. Commands (the workbench)
 
 ```bash
-uv run laxisource-mailroom-live   # run the program
+uv run laxisource-mailroom   # run the program
 uv run pytest                     # tests
 uv run pyright                    # type checker, strict mode
 uv run ruff check                 # linter

@@ -1,10 +1,10 @@
-# Laxisource Mailroom (live)
+# Laxisource Mailroom
 
 A learning project for [Programming Fundamentals (Agent Factory, Chapter 13)](https://agentfactory.panaversity.org/building-ai-workers/programming-fundamentals/overview/),
 built with the PRIMM-AI+ method: predict, run, investigate, modify, make.
 
 ```bash
-uv run laxisource-mailroom-live
+uv run laxisource-mailroom
 uv run pytest
 uv run pyright
 uv run ruff check
