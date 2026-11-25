@@ -1,31 +1,39 @@
 from pathlib import Path
 
 
-def read_text(path: str) -> str:
+def read_leads(path: str) -> str:
+    """Promise: give back the whole file as one piece of text."""
     return Path(path).read_text(encoding="utf-8")
 
 
-def lead_lines(text: str) -> list[str]:
-    # Skip line 0: it is the header with the column names, not a lead.
+def count_emails(text: str) -> int:
+    """Promise: count the lead rows (one email per row, header not counted)."""
     lines = text.strip().split("\n")
-    return [line.strip() for line in lines[1:]]
+    return len(lines) - 1  # minus 1 for the header line
 
 
-def get_emails(text: str) -> list[str]:
-    return [line.split(",")[2] for line in lead_lines(text)]
+def count_group(text: str, group: str) -> int:
+    """Promise: count the rows whose group column equals `group`."""
+    lines = text.strip().split("\n")
+    count = 0
+    for line in lines[1:]:  # skip the header line
+        parts = line.strip().split(",")
+        if parts[3] == group:
+            count += 1
+    return count
 
 
-def rows_in_group(text: str, group: str) -> list[list[str]]:
-    rows: list[list[str]] = []
-    for line in lead_lines(text):
-        row = line.split(",")
-        if row[3] == group:
-            rows.append(row)
-    return rows
+# ---------- tests ----------
 
+leads: str = read_leads("data/leads.csv")
 
-text = read_text("data/leads.csv")
-print("Type:", type(text))
-print("Emails:", len(get_emails(text)))
-for row in rows_in_group(text, "it-compliance"):
-    print(row)
+# Behavior 1: when the file is read, its output type is string
+assert type(leads) is str, "reading the file should give back text (str)"
+
+# Behavior 2: total number of emails is 24
+assert count_emails(leads) == 24, "there should be 24 emails"
+
+# Behavior 3: the it-compliance group has 8 rows
+assert count_group(leads, "it-compliance") == 8, "it-compliance should have 8 rows"
+
+print("All checks passed!")
