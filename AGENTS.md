@@ -57,9 +57,10 @@ Update this table as new lessons are finished.
 | 13.7 | Lists and dictionaries | lists (0-based index, `len()`), `IndexError`; dicts as records, `d["key"]`, `KeyError`, `.get(key, default)`; `sorted()` / `.sort()` with `key=`, `reverse=True`, `lambda` |
 | 13.8 | Text from a file | `from pathlib import Path`; `Path("data/x.csv").read_text(encoding="utf-8")` reads a whole file into one `str`; `.split(",")` and `.split("\n")` cut text into a list of `str`; line endings `\n` (Mac/Linux) and `\r\n` (Windows); `.strip()` removes blank space (and a stray `\r`) from both ends; every piece is still text until converted |
 | extra | Running a file directly | `if __name__ == "__main__":` runs the code under it only when the file is run directly (`uv run mailroom.py`), not when another file imports it; `import sys` and `sys.argv`, the list of words typed on the command line (`["mailroom.py", "subscribers"]`); `list.append()` |
+| extra | Dates | `from datetime import date, timedelta`; `date.fromisoformat("2026-11-20")` turns text into a `date`; `date(2026, 12, 1)`; `.year`, `.month`; `date - timedelta(days=30)` gives a new `date`; compare dates with `>=` / `<=`; `.weekday()` is an `int`, Monday is `0`; `date.today()` (command line only) |
 
 **Not covered yet (do not use without teaching first):** `open()`,
-`.splitlines()`, the `csv` module, dates (13.9), reading tracebacks in depth (13.10), the test-first
+`.splitlines()`, the `csv` module, the rest of 13.9, reading tracebacks in depth (13.10), the test-first
 TDG loop (13.11), and anything later: classes, dataclasses, modules beyond
 the basics, exceptions with `try`/`except`, `with`, generators, decorators,
 async, third-party libraries, and so on.
@@ -119,6 +120,8 @@ faith**. Every claim is checked by running code, tests or the type checker.
 ```bash
 uv run main.py                    # run the program
 uv run mailroom.py subscribers    # total subscribers, then count per group
+uv run mailroom.py subscribers --since-days 30 --run-date 2026-11-20  # + how many joined recently
+uv run mailroom.py next-send --run-date 2026-11-20                    # first Monday of next month
 uv run checks.py                  # inline assert tests for mailroom.py
 uv run pytest                     # tests
 uv run pyright                    # type checker, strict mode
@@ -135,6 +138,9 @@ Before saying any change is done, all three checks must pass:
 - **Type hints on every function signature** (parameters and return type).
   Pyright runs in strict mode.
 - Money is stored as whole **cents** in an `int`.
+- **Never read today's date inside the logic.** Pass the run date in as a
+  parameter. Only the command line (`if __name__ == "__main__":`) may call
+  `date.today()`, and only when `--run-date` was not given.
 - Keep functions small and pure where possible; check them with `assert`
   in tests.
 - Clear names over clever code. Short comments only where the *why* is not
