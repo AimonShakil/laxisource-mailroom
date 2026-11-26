@@ -19,7 +19,7 @@ dev = [
 [tool.pyright]
 typeCheckingMode = "strict"
 pythonVersion = "3.14"
-include = ["main.py", "check.py", "tests"]
+include = ["main.py", "mailroom.py", "check.py", "tests"]
 
 [tool.ruff]
 target-version = "py314"

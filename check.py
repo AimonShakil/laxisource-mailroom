@@ -1,27 +1,4 @@
-from pathlib import Path
-
-
-def read_leads(path: str) -> str:
-    """Promise: give back the whole file as one piece of text."""
-    return Path(path).read_text(encoding="utf-8")
-
-
-def count_emails(text: str) -> int:
-    """Promise: count the lead rows (one email per row, header not counted)."""
-    lines = text.strip().split("\n")
-    return len(lines) - 1  # minus 1 for the header line
-
-
-def count_group(text: str, group: str) -> int:
-    """Promise: count the rows whose group column equals `group`."""
-    lines = text.strip().split("\n")
-    count = 0
-    for line in lines[1:]:  # skip the header line
-        parts = line.strip().split(",")
-        if parts[3] == group:
-            count += 1
-    return count
-
+from mailroom import count_emails, count_group, read_leads
 
 # ---------- tests ----------
 

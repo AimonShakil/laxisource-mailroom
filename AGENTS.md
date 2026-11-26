@@ -105,6 +105,10 @@ faith**. Every claim is checked by running code, tests or the type checker.
 ├── uv.lock                           # locked dependency versions (commit it)
 ├── .python-version                   # 3.14
 ├── main.py                           # the program: main() lives here
+├── mailroom.py                       # the real logic (read leads, count)
+├── check.py                          # inline assert tests for mailroom.py
+├── data/
+│   └── leads.csv                     # fake leads (@example.com only)
 └── tests/
     └── test_main.py
 ```
