@@ -118,7 +118,7 @@ faith**. Every claim is checked by running code, tests or the type checker.
 
 ```bash
 uv run main.py                    # run the program
-uv run mailroom.py subscribers    # list every subscriber
+uv run mailroom.py subscribers    # total subscribers, then count per group
 uv run checks.py                  # inline assert tests for mailroom.py
 uv run pytest                     # tests
 uv run pyright                    # type checker, strict mode

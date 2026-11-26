@@ -34,12 +34,24 @@ def list_subscribers(text: str) -> list[str]:
     return subscribers
 
 
+# The groups we send to. Add a name here if a new group appears in the CSV.
+GROUPS: list[str] = ["enterprise-chro", "it-compliance", "mid-market-hr"]
+
+
+def subscriber_summary(text: str) -> list[str]:
+    """Promise: the total line first, then one "group: count" line per group."""
+    summary: list[str] = ["Total subscribers: " + str(count_emails(text))]
+    for group in GROUPS:
+        summary.append(group + ": " + str(count_group(text, group)))
+    return summary
+
+
 # Runs only for `uv run mailroom.py ...`, not when checks.py imports this file.
 if __name__ == "__main__":
     # sys.argv is the list of words typed after `uv run`: ["mailroom.py", "subscribers"]
     if len(sys.argv) > 1 and sys.argv[1] == "subscribers":
         leads = read_leads("data/subscribers.csv")
-        for subscriber in list_subscribers(leads):
-            print(subscriber)
+        for line in subscriber_summary(leads):
+            print(line)
     else:
         print("Usage: uv run mailroom.py subscribers")

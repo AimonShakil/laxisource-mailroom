@@ -1,4 +1,10 @@
-from mailroom import count_emails, count_group, list_subscribers, read_leads
+from mailroom import (
+    count_emails,
+    count_group,
+    list_subscribers,
+    read_leads,
+    subscriber_summary,
+)
 
 # ---------- tests ----------
 
@@ -17,5 +23,14 @@ assert count_group(leads, "it-compliance") == 8, "it-compliance should have 8 ro
 subscribers = list_subscribers(leads)
 assert len(subscribers) == 24, "there should be 24 subscribers"
 assert subscribers[0] == "Ayesha Khan <ayesha.khan@example.com>", "first should be Ayesha"
+
+# Behavior 5: the summary shows the total first, then one count per group
+summary = subscriber_summary(leads)
+assert summary == [
+    "Total subscribers: 24",
+    "enterprise-chro: 8",
+    "it-compliance: 8",
+    "mid-market-hr: 8",
+], "summary should be the total, then 8 in each of the 3 groups"
 
 print("All checks passed!")
