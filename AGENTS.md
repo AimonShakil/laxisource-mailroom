@@ -56,6 +56,7 @@ Update this table as new lessons are finished.
 | 13.6 | Functions | `def` with **typed parameters and return types**; the signature is the contract; pure functions; `assert` and `AssertionError` |
 | 13.7 | Lists and dictionaries | lists (0-based index, `len()`), `IndexError`; dicts as records, `d["key"]`, `KeyError`, `.get(key, default)`; `sorted()` / `.sort()` with `key=`, `reverse=True`, `lambda` |
 | 13.8 | Text from a file | `from pathlib import Path`; `Path("data/x.csv").read_text(encoding="utf-8")` reads a whole file into one `str`; `.split(",")` and `.split("\n")` cut text into a list of `str`; line endings `\n` (Mac/Linux) and `\r\n` (Windows); `.strip()` removes blank space (and a stray `\r`) from both ends; every piece is still text until converted |
+| extra | Running a file directly | `if __name__ == "__main__":` runs the code under it only when the file is run directly (`uv run mailroom.py`), not when another file imports it; `import sys` and `sys.argv`, the list of words typed on the command line (`["mailroom.py", "subscribers"]`); `list.append()` |
 
 **Not covered yet (do not use without teaching first):** `open()`,
 `.splitlines()`, the `csv` module, dates (13.9), reading tracebacks in depth (13.10), the test-first
@@ -117,6 +118,8 @@ faith**. Every claim is checked by running code, tests or the type checker.
 
 ```bash
 uv run main.py                    # run the program
+uv run mailroom.py subscribers    # list every subscriber
+uv run check.py                   # inline assert tests for mailroom.py
 uv run pytest                     # tests
 uv run pyright                    # type checker, strict mode
 uv run ruff check                 # linter
