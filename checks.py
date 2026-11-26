@@ -2,7 +2,7 @@ from mailroom import count_emails, count_group, list_subscribers, read_leads
 
 # ---------- tests ----------
 
-leads: str = read_leads("data/leads.csv")
+leads: str = read_leads("data/subscribers.csv")
 
 # Behavior 1: when the file is read, its output type is string
 assert type(leads) is str, "reading the file should give back text (str)"

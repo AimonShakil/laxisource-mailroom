@@ -34,11 +34,11 @@ def list_subscribers(text: str) -> list[str]:
     return subscribers
 
 
-# Runs only for `uv run mailroom.py ...`, not when check.py imports this file.
+# Runs only for `uv run mailroom.py ...`, not when checks.py imports this file.
 if __name__ == "__main__":
     # sys.argv is the list of words typed after `uv run`: ["mailroom.py", "subscribers"]
     if len(sys.argv) > 1 and sys.argv[1] == "subscribers":
-        leads = read_leads("data/leads.csv")
+        leads = read_leads("data/subscribers.csv")
         for subscriber in list_subscribers(leads):
             print(subscriber)
     else:
