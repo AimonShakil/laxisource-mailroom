@@ -71,6 +71,24 @@ def next_send(run_date: date) -> date:
     return day
 
 
+SUBJECT_LIMIT = 50  # docs/email-rules.md, rule 1
+
+
+def check_subject(issue_text: str) -> list[str]:
+    """Promise: the problems with the Subject line (first line), [] if it is fine."""
+    first_line = issue_text.strip().split("\n")[0].strip()
+    # Splitting on "Subject:" leaves "" in front only when the line starts with it.
+    parts = first_line.split("Subject:")
+    if len(parts) < 2 or parts[0] != "":
+        return ["missing"]
+    subject = parts[1].strip()
+    if subject == "":
+        return ["empty"]
+    if len(subject) > SUBJECT_LIMIT:
+        return ["too long"]
+    return []
+
+
 def get_option(args: list[str], name: str) -> str:
     """Promise: the word after `name` in args, or "" if `name` is not there."""
     i = 0

@@ -149,6 +149,10 @@ Before saying any change is done, all three checks must pass:
 - The checks are now **pytest tests** in `tests/` (`checks.py` is gone).
   Each behavior gets its own `test_...` function, named for the behavior
   it checks. Add a new behavior by adding a new test, not a new script.
+- **I decide the test cases and their answers.** Never change an expected
+  answer to make a test pass. If you think an answer is wrong, stop and
+  tell me. Cases the agent proposes are marked `# Claude's case` until I
+  confirm them.
 - Clear names over clever code. Short comments only where the *why* is not
   obvious.
 
