@@ -31,7 +31,7 @@ an issue, and sends it to a practice mail server.
 
 ## 2. How I learn
 
-- I am new to Python. I have completed up to **13.8** of
+- I am new to Python. I have completed up to **13.10** of
   [Programming Fundamentals](https://agentfactory.panaversity.org/building-ai-workers/programming-fundamentals/),
   and I update this number (and the table below) as I learn.
 - **Write only with what I have learned.** If something new would really
@@ -42,7 +42,7 @@ an issue, and sends it to a practice mail server.
 
 ### How far I have read
 
-**Covered so far: up to and including Lesson 13.8.**
+**Covered so far: up to and including Lesson 13.10.**
 
 Update this table as new lessons are finished.
 
@@ -56,13 +56,16 @@ Update this table as new lessons are finished.
 | 13.6 | Functions | `def` with **typed parameters and return types**; the signature is the contract; pure functions; `assert` and `AssertionError` |
 | 13.7 | Lists and dictionaries | lists (0-based index, `len()`), `IndexError`; dicts as records, `d["key"]`, `KeyError`, `.get(key, default)`; `sorted()` / `.sort()` with `key=`, `reverse=True`, `lambda` |
 | 13.8 | Text from a file | `from pathlib import Path`; `Path("data/x.csv").read_text(encoding="utf-8")` reads a whole file into one `str`; `.split(",")` and `.split("\n")` cut text into a list of `str`; line endings `\n` (Mac/Linux) and `\r\n` (Windows); `.strip()` removes blank space (and a stray `\r`) from both ends; every piece is still text until converted |
+| 13.9 | Dates | ISO text (`YYYY-MM-DD`) compares correctly with `<=`, other formats (`"3/10/2027"`) compare wrongly with no error; `date` (a calendar day, cannot slip) vs `datetime` (has a time of day, can slip across time zones); `start + timedelta(days=n)` knows where each month ends; `date.fromisoformat()` |
+| 13.10 | When it breaks: reading an error | A Python error report is a **traceback**: the message is the last line (a word ending in `Error`), the failing line is just above it, the oldest call is at the top; skip `<frozen runpy>` lines and find the first line naming a project file; `line 21` and the `^` marker show where; `<module>` is the top level of a file; an error is *raised* where the bad value causes trouble, which may not be where it came from; reading `KeyError`, `IndexError`, `ValueError` messages |
 | extra | Running a file directly | `if __name__ == "__main__":` runs the code under it only when the file is run directly (`uv run mailroom.py`), not when another file imports it; `import sys` and `sys.argv`, the list of words typed on the command line (`["mailroom.py", "subscribers"]`); `list.append()` |
 | extra | Dates | `from datetime import date, timedelta`; `date.fromisoformat("2026-11-20")` turns text into a `date`; `day.isoformat()` turns a `date` back into text (`str(day)` gives the same); `date(2026, 12, 1)`; `.year`, `.month`; `date - timedelta(days=30)` gives a new `date`; compare dates with `>=` / `<=`; `.weekday()` is an `int`, Monday is `0`; `date.today()` (command line only) |
 
 **Not covered yet (do not use without teaching first):** `open()`,
-`.splitlines()`, the `csv` module, the rest of 13.9, reading tracebacks in depth (13.10), the test-first
-TDG loop (13.11), and anything later: classes, dataclasses, modules beyond
-the basics, exceptions with `try`/`except`, `with`, generators, decorators,
+`.splitlines()`, the `csv` module, `datetime` (time of day, time zones),
+writing your own `raise`, the test-first TDG loop (13.11), and anything
+later: classes, dataclasses, modules beyond the basics, exceptions with
+`try`/`except`, `with`, generators, decorators,
 async, third-party libraries, and so on.
 
 ## 3. The golden rule: teach before you use
