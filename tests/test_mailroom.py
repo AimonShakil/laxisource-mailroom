@@ -100,7 +100,7 @@ def test_no_subject_line_is_one_problem_missing() -> None:
     assert check_subject("Preview: Hi\n\nHi {{first_name}},") == ["missing"]
 
 
-# Claude's cases (Aimon to confirm the answers).
+# Proposed by Claude, answers confirmed by Aimon.
 
 
 def test_normal_subject_has_no_problems() -> None:
