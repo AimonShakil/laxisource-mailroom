@@ -31,7 +31,7 @@ an issue, and sends it to a practice mail server.
 
 ## 2. How I learn
 
-- I am new to Python. I have completed up to **13.10** of
+- I am new to Python. I have completed up to **13.11** of
   [Programming Fundamentals](https://agentfactory.panaversity.org/building-ai-workers/programming-fundamentals/),
   and I update this number (and the table below) as I learn.
 - **Write only with what I have learned.** If something new would really
@@ -44,7 +44,7 @@ an issue, and sends it to a practice mail server.
 
 ### How far I have read
 
-**Covered so far: up to and including Lesson 13.10.**
+**Covered so far: up to and including Lesson 13.11.**
 
 Update this table as new lessons are finished.
 
@@ -60,13 +60,13 @@ Update this table as new lessons are finished.
 | 13.8 | Text from a file | `from pathlib import Path`; `Path("data/x.csv").read_text(encoding="utf-8")` reads a whole file into one `str`; `.split(",")` and `.split("\n")` cut text into a list of `str`; line endings `\n` (Mac/Linux) and `\r\n` (Windows); `.strip()` removes blank space (and a stray `\r`) from both ends; every piece is still text until converted |
 | 13.9 | Dates | ISO text (`YYYY-MM-DD`) compares correctly with `<=`, other formats (`"3/10/2027"`) compare wrongly with no error; `date` (a calendar day, cannot slip) vs `datetime` (has a time of day, can slip across time zones); `start + timedelta(days=n)` knows where each month ends; `date.fromisoformat()` |
 | 13.10 | When it breaks: reading an error | A Python error report is a **traceback**: the message is the last line (a word ending in `Error`), the failing line is just above it, the oldest call is at the top; skip `<frozen runpy>` lines and find the first line naming a project file; `line 21` and the `^` marker show where; `<module>` is the top level of a file; an error is *raised* where the bad value causes trouble, which may not be where it came from; reading `KeyError`, `IndexError`, `ValueError` messages |
+| 13.11 | Tests first (TDG) | Write the test (the spec) first, run it and see it fail, then let the agent write code until it passes; pytest runs files named `test_*.py` and functions named `test_*` (`def test_x() -> None:` with `assert`); one test per behavior, named for the behavior it checks; `uv run pytest -v` lists each test by name |
 | extra | Running a file directly | `if __name__ == "__main__":` runs the code under it only when the file is run directly (`uv run mailroom.py`), not when another file imports it; `import sys` and `sys.argv`, the list of words typed on the command line (`["mailroom.py", "subscribers"]`); `list.append()` |
 | extra | Dates | `from datetime import date, timedelta`; `date.fromisoformat("2026-11-20")` turns text into a `date`; `day.isoformat()` turns a `date` back into text (`str(day)` gives the same); `date(2026, 12, 1)`; `.year`, `.month`; `date - timedelta(days=30)` gives a new `date`; compare dates with `>=` / `<=`; `.weekday()` is an `int`, Monday is `0`; `date.today()` (command line only) |
 
 **Not covered yet (do not use without teaching first):** `open()`,
 `.splitlines()`, the `csv` module, `datetime` (time of day, time zones),
-writing your own `raise`, the test-first TDG loop (13.11), and anything
-later: classes, dataclasses, modules beyond the basics, exceptions with
+writing your own `raise`, and anything later (13.12 onward): classes, dataclasses, modules beyond the basics, exceptions with
 `try`/`except`, `with`, generators, decorators,
 async, third-party libraries, and so on.
 
@@ -113,11 +113,11 @@ faith**. Every claim is checked by running code, tests or the type checker.
 ├── .python-version                   # 3.14
 ├── main.py                           # the program: main() lives here
 ├── mailroom.py                       # the real logic (read leads, count)
-├── checks.py                         # inline assert tests for mailroom.py
 ├── data/
 │   └── subscribers.csv               # fake subscribers (@example.com only)
 └── tests/
-    └── test_main.py
+    ├── test_main.py
+    └── test_mailroom.py              # one pytest test per behavior of mailroom.py
 ```
 
 ## 6. Commands (the workbench)
@@ -127,8 +127,7 @@ uv run main.py                    # run the program
 uv run mailroom.py subscribers    # total subscribers, then count per group
 uv run mailroom.py subscribers --since-days 30 --run-date 2026-11-20  # + how many joined recently
 uv run mailroom.py next-send --run-date 2026-11-20                    # first Monday of next month
-uv run checks.py                  # inline assert tests for mailroom.py
-uv run pytest                     # tests
+uv run pytest                     # tests (add -v to see each test by name)
 uv run pyright                    # type checker, strict mode
 uv run ruff check                 # linter
 ```
@@ -146,8 +145,10 @@ Before saying any change is done, all three checks must pass:
 - **Never read today's date inside the logic.** Pass the run date in as a
   parameter. Only the command line (`if __name__ == "__main__":`) may call
   `date.today()`, and only when `--run-date` was not given.
-- Keep functions small and pure where possible; check them with `assert`
-  in tests.
+- Keep functions small and pure where possible.
+- The checks are now **pytest tests** in `tests/` (`checks.py` is gone).
+  Each behavior gets its own `test_...` function, named for the behavior
+  it checks. Add a new behavior by adding a new test, not a new script.
 - Clear names over clever code. Short comments only where the *why* is not
   obvious.
 

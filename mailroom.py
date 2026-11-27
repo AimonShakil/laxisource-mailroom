@@ -90,7 +90,7 @@ def pick_run_date(args: list[str]) -> date:
     return date.today()
 
 
-# Runs only for `uv run mailroom.py ...`, not when checks.py imports this file.
+# Runs only for `uv run mailroom.py ...`, not when the tests import this file.
 if __name__ == "__main__":
     # sys.argv is the list of words typed after `uv run`: ["mailroom.py", "subscribers"]
     command = ""
