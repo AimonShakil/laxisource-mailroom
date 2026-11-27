@@ -39,6 +39,8 @@ an issue, and sends it to a practice mail server.
 - **When the code uses something new, show me that piece first and ask me
   to predict what it does.** Stay quiet while I guess. Then run it, and
   explain a line only when I ask.
+- **When something breaks, show me the full error first, exactly as
+  printed, before changing anything.** No fixing until I have read it.
 
 ### How far I have read
 
