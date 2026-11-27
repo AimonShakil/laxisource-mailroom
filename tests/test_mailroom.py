@@ -108,7 +108,7 @@ def test_normal_subject_has_no_problems() -> None:
 
 
 def test_issue_01_subject_has_no_problems() -> None:
-    issue = read_leads("docs/issue-01.md")
+    issue = read_leads("issues/issue-01.md")
     assert check_subject(issue) == []
 
 

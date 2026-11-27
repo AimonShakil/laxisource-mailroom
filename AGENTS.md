@@ -115,6 +115,10 @@ faith**. Every claim is checked by running code, tests or the type checker.
 ├── mailroom.py                       # the real logic (read leads, count)
 ├── data/
 │   └── subscribers.csv               # fake subscribers (@example.com only)
+├── docs/
+│   └── email-rules.md                # the rules every issue must follow
+├── issues/
+│   └── issue-01.md                   # newsletter issues, one file each
 └── tests/
     ├── test_main.py
     └── test_mailroom.py              # one pytest test per behavior of mailroom.py
