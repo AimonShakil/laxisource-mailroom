@@ -7,6 +7,7 @@ from mailroom import (
     get_option,
     list_subscribers,
     next_send,
+    pick_run_date,
     read_leads,
     subscriber_summary,
 )
@@ -54,5 +55,8 @@ assert next_send(date.fromisoformat("2026-12-07")) == date.fromisoformat("2027-0
 args = ["mailroom.py", "next-send", "--run-date", "2026-11-20"]
 assert get_option(args, "--run-date") == "2026-11-20", "should find the run date"
 assert get_option(args, "--since-days") == "", "missing option should give empty text"
+
+# Behavior 10: pick_run_date uses --run-date when it is given (today's date is not tested)
+assert pick_run_date(args) == date.fromisoformat("2026-11-20"), "should use --run-date"
 
 print("All checks passed!")
